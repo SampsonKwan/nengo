@@ -168,13 +168,13 @@ def test_nondefault_routing(Simulator, seed, plt):
     data = sim.data[compare_probe]
     similarity = np.dot(data, vocab.parse('YES').v)
 
-    valueA = np.mean(data[150:200], axis=0)  # should be [1]
-    valueB = np.mean(data[350:400], axis=0)  # should be [0]
-    valueC = np.mean(data[550:600], axis=0)  # should be [1]
+    valueA = np.mean(similarity[150:200], axis=0)  # should be [1]
+    valueB = np.mean(similarity[350:400], axis=0)  # should be [0]
+    valueC = np.mean(similarity[550:600], axis=0)  # should be [1]
 
-    assert valueA[0] > 0.6
-    assert valueB[0] < 0.3
-    assert valueC[0] > 0.6
+    assert valueA > 0.6
+    assert valueB < 0.3
+    assert valueC > 0.6
 
 
 def test_errors():
